@@ -1,0 +1,19 @@
+.card-container {
+  display: flex;
+  gap: 20px;
+  padding: 30px 0;
+  justify-content: center;
+}
+
+.title {
+  color: deepskyblue;
+  & span {
+    color: chocolate;
+  }
+  & h2{
+    color: aquamarine;
+  }
+  & h2:hover{
+    color: firebrick;
+  }
+}
