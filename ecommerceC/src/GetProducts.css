@@ -1,0 +1,18 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    
+}
+
+.card {
+    width: 20%;
+    box-shadow: 3px 3px 28px -5px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 3px 3px 28px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 28px -5px rgba(0,0,0,0.75);
+    padding: 20px;
+    & img {
+        width: 50%;
+
+    }
+}
