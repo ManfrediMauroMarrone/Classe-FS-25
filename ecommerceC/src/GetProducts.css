@@ -2,10 +2,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: center;
+    
     
 }
 
 .card {
+    text-align: center;
     width: 20%;
     box-shadow: 3px 3px 28px -5px rgba(0,0,0,0.75);
     -webkit-box-shadow: 3px 3px 28px -5px rgba(0,0,0,0.75);
@@ -13,6 +16,7 @@
     padding: 20px;
     & img {
         width: 50%;
-
+        
     }
+border-radius: 20px;
 }
