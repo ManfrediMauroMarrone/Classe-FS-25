@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { Card } from "./Card"
 import './GetProducts.css'
+import { Cart } from "./Cart"
 
 export function GetProducts() {
 
@@ -26,8 +27,12 @@ export function GetProducts() {
     }, [])
 
     return (
+        <>
+        <Cart/>
         <div className="card-container">
             {products && products.map(el => <Card prod={el} key={el.id}/>)}
         </div>
+        </>
+
     )
 }

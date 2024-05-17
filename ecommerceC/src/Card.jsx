@@ -3,11 +3,7 @@ import { cart } from "./CartContext"
 
 
 export function Card({prod}) {
-    const [addProduct, cartProducts] = useContext(cart)
-
-    useEffect(() => {
-        console.log(cartProducts)
-    },[cartProducts])
+    const {addProduct, cartProducts} = useContext(cart)
 
     return ( 
         <div className="card">
