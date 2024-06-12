@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 const port = process.env.PORT || 3000
 
-const users = [
+let users = [
     {
         id: 1,
         username: 'user1',
@@ -54,9 +54,9 @@ app.post('/users/new', (req, res) => {
     console.log(Object.keys(newUser));
     if (Object.keys(newUser).length > 0) {
         users.push(newUser)
-        res.status(200).json({msg: 'utente aggiunto'})
+        res.status(200).json({ msg: 'utente aggiunto' })
     } else {
-        res.status(400).json({msg: 'bad request'})
+        res.status(400).json({ msg: 'bad request' })
     }
 
 })
@@ -67,9 +67,48 @@ app.get('/users/:id', (req, res) => {
     if (singleUser) {
         res.status(200).json(singleUser)
     } else {
-        res.status(400).json({msg: 'no user found'})
+        res.status(400).json({ msg: 'no user found' })
     }
-    
+
+})
+
+app.patch('/users/update/:id', (req, res) => {
+    const id = Number(req.params.id)
+    const newPass = req.body.password
+    const user = users.find(element => element.id === id)
+    if (newPass && user) {
+        const updated = users.map(element => {
+            if (element.id === id) {
+                return { ...element, password: newPass }
+            } else {
+                return element
+            }
+        })
+
+        users = updated
+
+        res.status(201).json({ msg: `utente con id ${id} modificato` })
+    } else {
+        res.status(400).json({ msg: 'missing data' })
+    }
+
+})
+
+app.delete('/users/delete/:id', (req, res) => {
+    const id = Number(req.params.id)
+    const user = users.find(element => element.id === id)
+    if (user) {
+        const filtered = users.filter(element => {
+            return element.id !== id
+        })
+
+        users = filtered
+
+        res.status(200).json({ msg: `utente con id ${id} eliminato` })
+    } else {
+        res.status(400).json({ msg: 'user not found' })
+    }
+
 })
 
 app.use((req, res, next) => {
