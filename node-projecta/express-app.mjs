@@ -1,5 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import cors from 'cors'
 dotenv.config()
 const port = process.env.PORT || 3000
 
@@ -35,6 +36,8 @@ const app = express()
 
 app.use(express.json())
 
+app.use(cors())
+
 app.use((req, res, next) => {
     console.log(req.method, req.url);
     next()
@@ -51,12 +54,11 @@ app.get('/users', (req, res) => {
 app.post('/users/new', (req, res) => {
     const newUser = req.body
     console.log(newUser);
-    console.log(Object.keys(newUser));
-    if (Object.keys(newUser).length > 0) {
+    if (newUser.username.trim() && newUser.password.trim()) {
         users.push(newUser)
         res.status(200).json({ msg: 'utente aggiunto' })
     } else {
-        res.status(400).json({ msg: 'bad request' })
+        res.status(400).json({ msg: 'missing data' })
     }
 
 })
