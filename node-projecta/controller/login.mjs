@@ -13,7 +13,6 @@ export async function login(req, res) {
                 res.status(400).json({ msg: 'password errata' })
             } else {
                 const token = jwt.sign(foundUser, secretKey, { expiresIn: '24h' })
-                console.log('token', token);
                 await db.none(`UPDATE utenti SET token='${token}' WHERE username='${foundUser.username}'`)
                 res.status(200).json({ msg: 'utente loggato' })
             }
